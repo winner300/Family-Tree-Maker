@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Family Member</title>
+  <link rel="stylesheet" href="CSS/addfam.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="homepage.html">
+      <h1 class="name chage">Homepage</h1>
+    </a>
+  </div>
+
+  <!-- Main form area -->
+  <div class="holder">
+    <form id="addMemberForm" class="fullperson">
+
+      <!-- Full Name -->
+      <label for="fullName">Full Name:</label>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        placeholder="Enter full name"
+        required
+      />
+
+      <!-- Photo Upload -->
+      <label for="photoUrl">Photo:</label>
+      <input
+        type="file"
+        id="photoUrl"
+        name="photoUrl"
+        accept="image/*"
+      />
+
+      <!-- Category -->
+      <label for="category">Category:</label>
+      <select id="category" name="category" required>
+        <option value="">— select side —</option>
+        <option value="Paternal">Paternal</option>
+        <option value="Maternal">Maternal</option>
+        <option value="Custom">Custom</option>
+      </select>
+
+      <!-- Spouse -->
+      <label for="spouseSelect">Spouse:</label>
+      <select id="spouseSelect" name="spouseId">
+        <option value="">— none —</option>
+      </select>
+
+      <!-- Parents (multi-select) -->
+      <label for="parentsSelect">Parents:</label>
+      <select id="parentsSelect" name="parentIds" multiple size="2">
+        <!-- hold Ctrl/Cmd to select up to two -->
+      </select>
+
+      <!-- Children -->
+      <label for="childrenSelect">Children:</label>
+      <select id="childrenSelect" name="childrenIds" multiple>
+      </select>
+
+      <!-- Submit -->
+      <button type="submit">Add Member</button>
+    </form>
+  </div>
+
+  <script src="js/person.js"></script>
+</body>
+</html>

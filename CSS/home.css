@@ -1,0 +1,170 @@
+/* Reset & Base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar – original fixed, vertical panel */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;               /* original width */
+  height: 100vh;
+  background-color: #718ab6;  /* your chosen purple background */
+  padding: 1rem;
+  border-right: 4px solid #000;
+  overflow-y: auto;
+}
+
+/* Nav links container – stack links vertically */
+.sidebar .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0;    /* adjust if you want extra top spacing */
+}
+
+/* Each link */
+.sidebar .nav-link {
+  text-decoration: none;
+  color: initial;    /* use the browser’s default link color (purple/blue) */
+  font-size: 1rem;
+  padding: 0.25rem 0;
+}
+
+/* Hover state */
+.sidebar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Search box at bottom of sidebar */
+.sidebar .search-box {
+  margin-top: 2rem;
+}
+.sidebar .search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+}
+
+/* Main Content Wrapper */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  margin-left: 15rem;     /* match your sidebar width */
+  padding: 24px;
+  background-color: #f9fafb;
+  overflow-y: auto;       /* vertical scroll if needed */
+  box-sizing: border-box;
+}
+.main-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Search Box */
+.search-box {
+  margin-top: 24px;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+}
+
+/* Member Cards Container */
+/* Wrap your #family-tree-grid in this in HTML */
+.scroll-container {
+  overflow-x: auto;     /* enable horizontal scrollbar */
+  padding-bottom: 8px;   /* space so scrollbar doesn’t cover cards */
+}
+
+/* Use flex now instead of grid */
+#family-tree-grid {
+  display: flex;
+  flex-wrap: nowrap;     /* all cards in a single row */
+  gap: 24px;             /* spacing between cards */
+}
+
+/* Card styling */
+.member-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+
+  /* ensure cards don’t shrink too small */
+  min-width: 200px;     
+}
+
+/* Add Member Form (if used elsewhere) */
+.fullperson {
+  background-color: bisque;
+  padding: 2rem;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.form-group input,
+.form-group select {
+  padding: 0.5rem;
+  width: 100%;
+}
+.fullperson button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Edit/Delete Buttons */
+.btn-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #45a049;
+}
+.delete-btn:hover {
+  background-color: #e53935;
+}

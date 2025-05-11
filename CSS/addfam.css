@@ -1,0 +1,89 @@
+/* Reset & Base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar – original fixed, vertical panel */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 100vh;
+  background-color:  #718ab6;
+  padding: 1rem;
+  border-right: 4px solid #000;
+  overflow-y: auto;
+}
+
+/* Nav links container – stack links vertically */
+.sidebar .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0;
+}
+
+/* Each link */
+.sidebar .nav-link {
+  text-decoration: none;
+  color: initial;
+  font-size: 1rem;
+  padding: 0.25rem 0;
+}
+
+/* Hover state */
+.sidebar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Main layout fix */
+.holder {
+  margin-left: 15rem; /* same as sidebar width */
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Add Member Form */
+.fullperson {
+  background-color: bisque;
+  padding: 2rem;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.fullperson button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.main-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
