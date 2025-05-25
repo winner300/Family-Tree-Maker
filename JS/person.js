@@ -1,8 +1,9 @@
 // 1. Utility functions
 function loadMembers() {
-  var data = localStorage.getItem("familyMembers");
+  const data = localStorage.getItem("familyMembers");
   return data ? JSON.parse(data) : [];
 }
+
 function saveMembers(members) {
   localStorage.setItem("familyMembers", JSON.stringify(members));
 }
@@ -14,31 +15,31 @@ function generateId() {
 
 // 3. Populate relation selects
 function populateRelationSelects() {
-  var members = loadMembers();
-  var spouseSelect = document.getElementById("spouseSelect");
-  var parentsSelect = document.getElementById("parentsSelect");
-  var childrenSelect = document.getElementById("childrenSelect");
+  const members = loadMembers();
+  const spouseSelect = document.getElementById("spouseSelect");
+  const parentsSelect = document.getElementById("parentsSelect");
+  const childrenSelect = document.getElementById("childrenSelect");
   if (!spouseSelect || !parentsSelect || !childrenSelect) return;
 
   spouseSelect.innerHTML = "<option value=''>— none —</option>";
-  parentsSelect.innerHTML = ""; // no placeholder for multiple
+  parentsSelect.innerHTML = "";
   childrenSelect.innerHTML = "";
 
   members.forEach((m) => {
     // spouse dropdown
-    var sOpt = document.createElement("option");
+    const sOpt = document.createElement("option");
     sOpt.value = m.id;
     sOpt.text = m.fullName;
     spouseSelect.add(sOpt);
 
     // parents multi-select
-    var pOpt = document.createElement("option");
+    const pOpt = document.createElement("option");
     pOpt.value = m.id;
     pOpt.text = m.fullName;
     parentsSelect.add(pOpt);
 
     // children multi-select
-    var cOpt = document.createElement("option");
+    const cOpt = document.createElement("option");
     cOpt.value = m.id;
     cOpt.text = m.fullName;
     childrenSelect.add(cOpt);
@@ -47,26 +48,26 @@ function populateRelationSelects() {
 
 // 4. Handle Add-Member form
 function initAddMemberPage() {
-  var form = document.getElementById("addMemberForm");
+  const form = document.getElementById("addMemberForm");
   if (!form) return;
 
   populateRelationSelects();
 
-  form.addEventListener("submit", function (event) {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    var fullName = document.getElementById("fullName").value.trim();
-    var photoUrl = document.getElementById("photoUrl").value;
-    var category = document.getElementById("category").value;
-    var spouseId = document.getElementById("spouseSelect").value || null;
-    var parentIds = Array.from(
+    const fullName = document.getElementById("fullName").value.trim();
+    const photoUrl = document.getElementById("photoUrl").value;
+    const category = document.getElementById("category").value;
+    const spouseId = document.getElementById("spouseSelect").value || null;
+    const parentIds = Array.from(
       document.getElementById("parentsSelect").selectedOptions
-    ).map((opt) => opt.value);
-    var childrenIds = Array.from(
+    ).map((o) => o.value);
+    const childrenIds = Array.from(
       document.getElementById("childrenSelect").selectedOptions
-    ).map((opt) => opt.value);
+    ).map((o) => o.value);
 
-    var newMember = {
+    const newMember = {
       id: generateId(),
       fullName,
       photoUrl,
@@ -76,11 +77,11 @@ function initAddMemberPage() {
       childrenIds,
     };
 
-    var members = loadMembers();
+    const members = loadMembers();
 
     // update each chosen parent
     parentIds.forEach((pid) => {
-      var parent = members.find((m) => m.id === pid);
+      const parent = members.find((m) => m.id === pid);
       if (!parent) return;
       parent.childrenIds = parent.childrenIds || [];
       parent.childrenIds.push(newMember.id);
@@ -97,42 +98,42 @@ function initAddMemberPage() {
 
 // 5. Create a member card
 function createMemberCard(member, allMembers) {
-  var card = document.createElement("div");
+  const card = document.createElement("div");
   card.className = "member-card bg-white shadow rounded p-4 relative";
   card.dataset.id = member.id;
 
   // Photo
-  var img = document.createElement("img");
+  const img = document.createElement("img");
   img.src = member.photoUrl || "placeholder.jpg";
   img.alt = member.fullName;
   img.className = "w-full h-32 object-cover mb-2 rounded";
   card.appendChild(img);
 
   // Name
-  var nameEl = document.createElement("h2");
+  const nameEl = document.createElement("h2");
   nameEl.textContent = member.fullName;
   nameEl.className = "text-lg font-semibold mb-2";
   card.appendChild(nameEl);
 
   // Category
   if (member.category) {
-    var catEl = document.createElement("p");
+    const catEl = document.createElement("p");
     catEl.textContent = member.category;
     catEl.className = "text-sm italic text-gray-600 mb-2";
     card.appendChild(catEl);
   }
 
   // Spouse
-  var spouses = [];
+  const spouses = [];
   if (member.spouseId) {
-    var s = allMembers.find((m) => m.id === member.spouseId);
+    const s = allMembers.find((m) => m.id === member.spouseId);
     if (s) spouses.push(s);
   }
   allMembers.forEach((m) => {
     if (m.spouseId === member.id && m.id !== member.spouseId) spouses.push(m);
   });
   spouses.forEach((sp) => {
-    var p = document.createElement("p");
+    const p = document.createElement("p");
     p.className = "text-sm mb-1";
     p.innerHTML = `<strong>Spouse:</strong> ${sp.fullName}`;
     card.appendChild(p);
@@ -140,15 +141,15 @@ function createMemberCard(member, allMembers) {
 
   // Parents
   if (member.parentIds && member.parentIds.length) {
-    var pP = document.createElement("p");
+    const pP = document.createElement("p");
     pP.className = "text-sm mb-1";
     pP.innerHTML = "<strong>Parents:</strong> ";
     member.parentIds.forEach((pid, i) => {
-      var par = allMembers.find((m) => m.id === pid);
+      const par = allMembers.find((m) => m.id === pid);
       if (!par) return;
-      var link = document.createElement("span");
-      link.textContent = par.fullName;
-      pP.appendChild(link);
+      const span = document.createElement("span");
+      span.textContent = par.fullName;
+      pP.appendChild(span);
       if (i < member.parentIds.length - 1)
         pP.appendChild(document.createTextNode(", "));
     });
@@ -157,15 +158,15 @@ function createMemberCard(member, allMembers) {
 
   // Children
   if (member.childrenIds && member.childrenIds.length) {
-    var pC = document.createElement("p");
+    const pC = document.createElement("p");
     pC.className = "text-sm";
     pC.innerHTML = "<strong>Children:</strong> ";
     member.childrenIds.forEach((cid, i) => {
-      var ch = allMembers.find((m) => m.id === cid);
+      const ch = allMembers.find((m) => m.id === cid);
       if (!ch) return;
-      var link = document.createElement("a");
+      const link = document.createElement("a");
       link.href =
-        ch.category === "Maternal" ? "maternal.html" : "view paternal.html";
+        ch.category === "Maternal" ? "maternal.html" : "paternal.html";
       link.textContent = ch.fullName;
       link.className = "underline text-blue-600";
       pC.appendChild(link);
@@ -175,24 +176,27 @@ function createMemberCard(member, allMembers) {
     card.appendChild(pC);
   }
 
-  // Edit/Delete
-  var btns = document.createElement("div");
+  // Edit/Delete buttons
+  const btns = document.createElement("div");
   btns.className = "btn-container";
-  var edit = document.createElement("button");
+
+  const edit = document.createElement("button");
   edit.textContent = "Edit";
   edit.className = "edit-btn";
   edit.onclick = () =>
     (window.location.href = "add family member.html?id=" + member.id);
-  var del = document.createElement("button");
+
+  const del = document.createElement("button");
   del.textContent = "Delete";
   del.className = "delete-btn";
   del.onclick = () => {
     if (confirm(`Delete ${member.fullName}?`)) {
-      var rest = loadMembers().filter((m) => m.id !== member.id);
+      const rest = loadMembers().filter((m) => m.id !== member.id);
       saveMembers(rest);
       card.remove();
     }
   };
+
   btns.append(edit, del);
   card.appendChild(btns);
 
@@ -201,16 +205,25 @@ function createMemberCard(member, allMembers) {
 
 // 6. Render pages
 function initMaternalPage() {
-  var grid = document.getElementById("maternal-grid");
+  const grid = document.getElementById("maternal-grid");
   if (!grid) return;
-  var ms = loadMembers().filter((m) => m.category === "Maternal");
+  const ms = loadMembers().filter((m) => m.category === "Maternal");
   grid.innerHTML = "";
   ms.forEach((m) => grid.appendChild(createMemberCard(m, loadMembers())));
 }
-function initHomePage() {
-  var grid = document.getElementById("family-tree-grid");
+
+function initPaternalPage() {
+  const grid = document.getElementById("paternal-grid");
   if (!grid) return;
-  var ms = loadMembers();
+  const ms = loadMembers().filter((m) => m.category === "Paternal");
+  grid.innerHTML = "";
+  ms.forEach((m) => grid.appendChild(createMemberCard(m, loadMembers())));
+}
+
+function initHomePage() {
+  const grid = document.getElementById("family-tree-grid");
+  if (!grid) return;
+  const ms = loadMembers();
   grid.innerHTML = "";
   ms.forEach((m) => grid.appendChild(createMemberCard(m, ms)));
 }
@@ -219,6 +232,7 @@ function initHomePage() {
 document.addEventListener("DOMContentLoaded", function () {
   initAddMemberPage();
   initMaternalPage();
+  initPaternalPage();
   initHomePage();
 });
 
