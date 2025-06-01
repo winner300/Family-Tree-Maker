@@ -201,7 +201,7 @@ function createMemberCard(member, all) {
   var img = document.createElement("img");
   img.src = member.photoUrl || "placeholder.jpg";
   img.alt = member.fullName;
-  img.className = "w-full h-32 object-cover mb-2 rounded";
+  img.className = "w-40 h-32 object-cover mb-2 rounded";
   card.appendChild(img);
 
   // Name

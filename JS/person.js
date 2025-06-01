@@ -26,19 +26,16 @@ function populateRelationSelects() {
   childrenSelect.innerHTML = "";
 
   members.forEach((m) => {
-    // spouse dropdown
     const sOpt = document.createElement("option");
     sOpt.value = m.id;
     sOpt.text = m.fullName;
     spouseSelect.add(sOpt);
 
-    // parents multi-select
     const pOpt = document.createElement("option");
     pOpt.value = m.id;
     pOpt.text = m.fullName;
     parentsSelect.add(pOpt);
 
-    // children multi-select
     const cOpt = document.createElement("option");
     cOpt.value = m.id;
     cOpt.text = m.fullName;
@@ -79,7 +76,6 @@ function initAddMemberPage() {
 
     const members = loadMembers();
 
-    // update each chosen parent
     parentIds.forEach((pid) => {
       const parent = members.find((m) => m.id === pid);
       if (!parent) return;
@@ -102,20 +98,17 @@ function createMemberCard(member, allMembers) {
   card.className = "member-card bg-white shadow rounded p-4 relative";
   card.dataset.id = member.id;
 
-  // Photo
   const img = document.createElement("img");
   img.src = member.photoUrl || "placeholder.jpg";
   img.alt = member.fullName;
-  img.className = "w-full h-32 object-cover mb-2 rounded";
+  img.className = "w-40 h-32 object-cover mb-2 rounded";
   card.appendChild(img);
 
-  // Name
   const nameEl = document.createElement("h2");
   nameEl.textContent = member.fullName;
   nameEl.className = "text-lg font-semibold mb-2";
   card.appendChild(nameEl);
 
-  // Category
   if (member.category) {
     const catEl = document.createElement("p");
     catEl.textContent = member.category;
@@ -123,7 +116,6 @@ function createMemberCard(member, allMembers) {
     card.appendChild(catEl);
   }
 
-  // Spouse
   const spouses = [];
   if (member.spouseId) {
     const s = allMembers.find((m) => m.id === member.spouseId);
@@ -139,7 +131,6 @@ function createMemberCard(member, allMembers) {
     card.appendChild(p);
   });
 
-  // Parents
   if (member.parentIds && member.parentIds.length) {
     const pP = document.createElement("p");
     pP.className = "text-sm mb-1";
@@ -156,7 +147,6 @@ function createMemberCard(member, allMembers) {
     card.appendChild(pP);
   }
 
-  // Children
   if (member.childrenIds && member.childrenIds.length) {
     const pC = document.createElement("p");
     pC.className = "text-sm";
@@ -166,7 +156,11 @@ function createMemberCard(member, allMembers) {
       if (!ch) return;
       const link = document.createElement("a");
       link.href =
-        ch.category === "Maternal" ? "maternal.html" : "paternal.html";
+        ch.category === "Maternal"
+          ? "maternal.html"
+          : ch.category === "Paternal"
+          ? "paternal.html"
+          : "custom.html";
       link.textContent = ch.fullName;
       link.className = "underline text-blue-600";
       pC.appendChild(link);
@@ -176,7 +170,6 @@ function createMemberCard(member, allMembers) {
     card.appendChild(pC);
   }
 
-  // Edit/Delete buttons
   const btns = document.createElement("div");
   btns.className = "btn-container";
 
@@ -220,6 +213,14 @@ function initPaternalPage() {
   ms.forEach((m) => grid.appendChild(createMemberCard(m, loadMembers())));
 }
 
+function initCustomPage() {
+  const grid = document.getElementById("custom-grid");
+  if (!grid) return;
+  const ms = loadMembers().filter((m) => m.category === "Custom");
+  grid.innerHTML = "";
+  ms.forEach((m) => grid.appendChild(createMemberCard(m, loadMembers())));
+}
+
 function initHomePage() {
   const grid = document.getElementById("family-tree-grid");
   if (!grid) return;
@@ -233,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initAddMemberPage();
   initMaternalPage();
   initPaternalPage();
+  initCustomPage();
   initHomePage();
 });
 

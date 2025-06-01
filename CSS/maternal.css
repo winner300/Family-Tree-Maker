@@ -46,3 +46,4 @@ body {
     gap: 1.5rem; /* gap-6 */
   }
   
+  img { width: 300px;height: 300px; }

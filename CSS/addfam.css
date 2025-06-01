@@ -87,3 +87,5 @@ body {
   font-weight: 600;
   margin-bottom: 16px;
 }
+
+img { width: 300px;height: 300px; }

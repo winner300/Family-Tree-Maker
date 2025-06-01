@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>custom</title>
-    <link rel="stylesheet" href="CSS/home.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Side</title>
+  <link rel="stylesheet" href="CSS/maternal.css" />
 </head>
-<body>
-    <div class="sidebar">
-        <a href="homepage.html"><h1 class="name chage"> homepage </h1> </a> 
-       </div>
+<body class="flex h-screen font-sans">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a href="homepage.html" class="sidebar-link">&larr; Back to Home</a>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1 class="main-title">Custom Side</h1>
+    <div id="custom-grid" class="grid-container"></div>
+  </main>
+
+  <!-- JavaScript: Load person.js first, then custom.js -->
+  <script src="JS/person.js"></script> 
+  <script src="JS/custom.js"></script>
 </body>
 </html>

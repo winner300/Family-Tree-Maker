@@ -326,7 +326,7 @@ function createMemberCard(member, all, showCategory, showEditBtn) {
 
   // Photo with error handling
   var img = document.createElement("img");
-  img.className = "w-full h-32 object-cover mb-2 rounded";
+  img.className = "w-40 h-32 object-cover mb-2 rounded";
   img.alt = member.fullName;
 
   // Handle image loading with fallback
@@ -334,7 +334,7 @@ function createMemberCard(member, all, showCategory, showEditBtn) {
     // Create a placeholder div if image fails to load
     var placeholder = document.createElement("div");
     placeholder.className =
-      "w-full h-32 bg-gray-200 mb-2 rounded flex items-center justify-center";
+      "w-40 h-32 bg-gray-200 mb-2 rounded flex items-center justify-center";
     placeholder.innerHTML =
       '<span class="text-gray-500 text-sm">No Photo</span>';
     img.parentNode.replaceChild(placeholder, img);
