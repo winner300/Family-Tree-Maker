@@ -313,7 +313,7 @@ function initAddMemberPage() {
 
       saveMembers(members);
       alert("Saved!");
-      window.location.href = "homepage.html";
+      window.location.href = "index.html";
     }
   });
 }
