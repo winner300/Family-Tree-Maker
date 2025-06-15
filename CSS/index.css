@@ -1,0 +1,113 @@
+/* Ensure body doesn't hide behind the fixed topbar */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  padding-top: 70px; /* Adjust this if your topbar height changes */
+  background-color: rgb(95, 95, 95);
+}
+
+/* Topbar styling */
+.topbar {
+  background-color: #1e40af;
+  color: white;
+  padding: 1rem 2rem;
+  height: 70px;
+  width: 100%;
+  box-sizing: border-box;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.start {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.start2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: aqua;
+}
+
+.call {
+  font-size: 1.1rem;
+}
+
+/* Image container */
+.png {
+  display: flex;
+  flex-wrap: wrap; /* Wrap on small screens */
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Images inside .png */
+.png img {
+  width: 100%;
+  max-width: 400px;  /* Increased size */
+  height: 260px;     /* Increased height */
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Text content below images */
+.txt {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  color: azure;
+  padding: 1rem 2rem;
+  margin: auto;
+}
+.link {color: aliceblue;}
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .png {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .png img {
+    max-width: 90%;
+    height: auto; /* Allow scaling naturally */
+  }
+
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    gap: 0.5rem;
+  }
+
+  .start,
+  .start2,
+  .call {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .png img {
+    max-width: 450px;
+    height: 300px;
+  }
+}
+  

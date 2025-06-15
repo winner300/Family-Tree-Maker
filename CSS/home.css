@@ -1,18 +1,20 @@
 /* Reset & Base */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
-/* Sidebar – original fixed, vertical panel */
+/* Sidebar – fixed, vertical panel */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 15rem;               /* original width */
+  width: 15rem;
   height: 100vh;
-  background-color: #718ab6;  /* your chosen purple background */
+  background-color: #718ab6;
   padding: 1rem;
   border-right: 4px solid #000;
   overflow-y: auto;
@@ -23,13 +25,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 0;    /* adjust if you want extra top spacing */
+  margin-top: 0;
 }
 
 /* Each link */
 .sidebar .nav-link {
   text-decoration: none;
-  color: initial;    /* use the browser’s default link color (purple/blue) */
+  color: initial;
   font-size: 1rem;
   padding: 0.25rem 0;
 }
@@ -50,7 +52,7 @@ body {
   border: none;
 }
 
-/* Main Content Wrapper */
+/* Main Layout */
 .main-layout {
   display: flex;
   height: 100vh;
@@ -60,10 +62,10 @@ body {
 /* Main Content */
 .main-content {
   flex-grow: 1;
-  margin-left: 15rem;     /* match your sidebar width */
+  margin-left: 15rem;
   padding: 24px;
   background-color: #f9fafb;
-  overflow-y: auto;       /* vertical scroll if needed */
+  overflow-y: auto;
   box-sizing: border-box;
 }
 .main-title {
@@ -72,7 +74,7 @@ body {
   margin-bottom: 16px;
 }
 
-/* Search Box */
+/* (Duplicate) Search Box in main */
 .search-box {
   margin-top: 24px;
 }
@@ -84,41 +86,61 @@ body {
   font-size: 16px;
 }
 
-/* Member Cards Container */
-/* Wrap your #family-tree-grid in this in HTML */
+/* Scroll container wrapper (if you choose to wrap #family-tree-grid in one) */
 .scroll-container {
-  overflow-x: auto;     /* enable horizontal scrollbar */
-  padding-bottom: 8px;   /* space so scrollbar doesn’t cover cards */
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
-/* Use flex now instead of grid */
+/* Family Tree Grid – flex wrapping */
 #family-tree-grid {
   display: flex;
-  flex-wrap: nowrap;     /* all cards in a single row */
-  gap: 24px;             /* spacing between cards */
+  flex-wrap: wrap;       /* allow cards to flow onto new lines */
+  gap: 24px;
 }
 
-/* Card styling */
+/* Member Card */
 .member-card {
   background-color: white;
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
 
-  /* ensure cards don’t shrink too small */
-  min-width: 200px;     
+  /* flexible sizing */
+  flex: 1 1 200px;       /* grow, shrink, basis */
+  min-width: 200px;      /* never smaller than this */
 }
 
+/* Member Card Image – fluid */
+.member-card img {
+  width: 100%;           /* fill card’s width */
+  height: auto;          /* maintain aspect ratio */
+  object-fit: cover;     /* crop neatly if needed */
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  height:300px;
+}
 
+/* Member Card Text */
+.member-card h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.member-card p {
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+}
 
-/* Edit/Delete Buttons */
+/* Edit/Delete Buttons Container */
 .btn-container {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
   margin-top: 10px;
 }
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
@@ -140,5 +162,3 @@ body {
 .delete-btn:hover {
   background-color: #e53935;
 }
-
-img { width: 300px;height: 300px; }

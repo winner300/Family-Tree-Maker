@@ -313,11 +313,11 @@ function initAddMemberPage() {
 
       saveMembers(members);
       alert("Saved!");
-      window.location.href = "index.html";
+      window.location.href = "homepage.html";
     }
   });
 }
-
+//LOL LOL HI!
 // 5. Create a member card (updated to handle image errors and match expected parameters)
 function createMemberCard(member, all, showCategory, showEditBtn) {
   var card = document.createElement("div");

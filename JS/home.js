@@ -187,7 +187,7 @@ function initAddMemberPage() {
 
     saveMembers(members);
     alert("Saved!");
-    window.location.href = "index.html";
+    window.location.href = "homepage.html";
   });
 }
 

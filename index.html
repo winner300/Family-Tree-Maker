@@ -3,54 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FamilyTree.com</title>
-  <link rel="stylesheet" href="CSS/home.css" />
+  <title>front page</title>
+  <link rel="stylesheet" href="CSS/index.css" />
 </head>
-<body class="main-layout">
-
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <nav class="nav-links">
-      <a href="view pateranal.html" class="nav-link">View Paternal Side (dad)</a>
-      <a href="Maternal.html" class="nav-link">View Maternal Side (mom)</a>
-      <a href="custom.html" class="nav-link">View Custom Side</a>
-      <a href="add family member.html" class="nav-link">Add Family Member</a>
-    </nav>
-    <div class="search-box">
-      <input
-        type="text"
-        id="searchBar"
-        placeholder="Search members…"
-        class="search-input"
-      >
-    </div>
-  </aside>
-
-  <!-- Main Content: Family Tree Grid -->
-  <main class="main-content">
-    <h1 class="main-title">Your Family Tree</h1>
-    <div id="family-tree-grid" class="family-tree-grid">
-      <!-- JS will inject member cards here -->
-    </div>
-  </main>
-
-  <script src="js/person.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Render everyone
-      if (typeof initHomePage === 'function') initHomePage();
-
-      // Live search filter
-      const searchBar = document.getElementById('searchBar');
-      searchBar.addEventListener('input', e => {
-        const q = e.target.value.toLowerCase();
-        document.querySelectorAll('#family-tree-grid > .member-card')
-          .forEach(card => {
-            const name = card.dataset.fullname.toLowerCase();
-            card.style.display = name.includes(q) ? '' : 'none';
-          });
-      });
-    });
-  </script>
+<body class="font-sans m-0 p-0">
+  
+  <div class="topbar">
+    <a href="homepage.html">
+      <h1 class="start">Get started today!</h1>
+    </a>
+    <div>  <img src="img/Screenshot 2025-06-08 143035.png"> <img src="img/LI.png"> </div>
+    <h1 class="call"> call at 867 445 98671</h1>
+    <h1 class="start2">Family designer.com</h1>
+  </div>
+  <div class="png">
+  <img src="img/every one.jpg" alt=""> <img src="img/me mom and dad.png"> <img src="img/mo.jpg"/>
+</div>
+ <div class="txt">This family tree tool enables users to create detailed and organized family maps. It supports paternal (father's side), maternal (mother's side), and custom branches, allowing flexible structure. Children can be clearly linked to both parents, and users can upload images to represent individual family members. It’s an ideal tool for documenting family history in a clear and personalized way.    <a href="homepage.html" class="link"> <h1> Create your family tree FOR FREE today!</h1> </a> </div> 
+ <div class="txt"> <h1> contact support at @Bought82068482 on x </h1> </div>
 </body>
 </html>
